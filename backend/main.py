@@ -25,14 +25,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
-#
-# @app.get("/", tags=["Root"])
-# async def read_root():
-#     return {"message": "Hello World"}
+
+@app.get("/", tags=["Root"])
+async def read_root():
+    return {"message": "go to http://localhost:8000/docs"}
 
 
 if __name__ == "__main__":
-    uvicorn.run("routes.warehouseRoute:router", host="localhost", port=8000, reload=True)
+    uvicorn.run("main:app", host="localhost", port=8000, reload=True)

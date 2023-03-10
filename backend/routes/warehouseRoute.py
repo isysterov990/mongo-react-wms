@@ -12,7 +12,7 @@ from backend.models.warehouseModel import (
 
 router = APIRouter()
 
-@router.get("/", response_description="Products retrived", tags=["Prodcuts"])
+@router.get("/", response_description="Products retrived")
 async def get_products():
     products = await retrieve_products()
     if products:
