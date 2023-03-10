@@ -20,6 +20,6 @@ def product_helper(product) -> dict:
 
 async def retrieve_products():
     products = []
-    async for student in warehouse_collection.find():
-        products.append(product_helper(student))
+    async for product in warehouse_collection.find():
+        products.append(product_helper(product))
     return products
