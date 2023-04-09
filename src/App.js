@@ -1,34 +1,65 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import ProductCard from "./components/productCard";
+import React, {useEffect, useState} from "react";
+import BasicTabs from "./components/tabs";
 
 function App() {
-  const [data, setData] = useState(null);
+    const [productsData, setProductsData] = useState(null);
+    const [customersData, setCustomersData] = useState(null);
+    const [ordersData, setOrdersData] = useState(null);
+    const [suppliersData, setSupplierData] = useState(null);
 
-  useEffect(() => {
-  fetch("http://localhost:8000/products", {
-    method:"GET"
-  }).then(response => response.json())
-  .then(data => {
-    console.log(data);
-    setData(data);
-  })
-  .catch((err) => {
-         console.log(err.message);
-  });
-  }, []);
+    useEffect(() => {
+        fetch("http://localhost:8000/products", {
+            method: "GET"
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setProductsData(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        fetch("http://localhost:8000/customers", {
+            method: "GET"
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setCustomersData(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        fetch("http://localhost:8000/orders", {
+            method: "GET"
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setOrdersData(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        fetch("http://localhost:8000/suppliers", {
+            method: "GET"
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setSupplierData(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    },[])
 
-  return (
-  <div className="productCardContainer">
-    {data ? (
-      data.products.map((product) => (
-        <ProductCard product={product} />
-      ))
-    ) : (
-      <p>Loading...</p>
-    )}
-  </div>
-  );
+
+    return (
+        <div>
+            <BasicTabs productsData={productsData}
+                       customersData={customersData}
+                       ordersData={ordersData}
+                       suppliersData={suppliersData}
+            />
+        </div>
+    );
 }
 
 export default App;
