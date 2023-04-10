@@ -6,9 +6,9 @@ function App() {
     const [customersData, setCustomersData] = useState(null);
     const [ordersData, setOrdersData] = useState(null);
     const [suppliersData, setSupplierData] = useState(null);
-
+    const BASE_URL='https://wawmsproject-backend.azurewebsites.net'
     useEffect(() => {
-        fetch("http://localhost:8000/products", {
+        fetch(`${BASE_URL}/products`, {
             method: "GET"
         }).then(response => response.json())
             .then(data => {
@@ -18,7 +18,7 @@ function App() {
             .catch((err) => {
                 console.log(err.message);
             });
-        fetch("http://localhost:8000/customers", {
+        fetch(`${BASE_URL}/customers`, {
             method: "GET"
         }).then(response => response.json())
             .then(data => {
@@ -28,7 +28,7 @@ function App() {
             .catch((err) => {
                 console.log(err.message);
             });
-        fetch("http://localhost:8000/orders", {
+        fetch(`${BASE_URL}/orders`, {
             method: "GET"
         }).then(response => response.json())
             .then(data => {
@@ -38,7 +38,7 @@ function App() {
             .catch((err) => {
                 console.log(err.message);
             });
-        fetch("http://localhost:8000/suppliers", {
+        fetch(`${BASE_URL}/suppliers`, {
             method: "GET"
         }).then(response => response.json())
             .then(data => {

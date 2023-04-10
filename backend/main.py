@@ -17,7 +17,9 @@ import supplier
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://wawmsproject-backend.azurewebsites.net",
+    "https://wawmsproject-frontend.azurewebsites.net"
 ]
 
 app.add_middleware(
