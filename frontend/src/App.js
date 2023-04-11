@@ -50,7 +50,6 @@ function App() {
             });
     },[])
 
-
     return (
         <div>
             <BasicTabs productsData={productsData}
