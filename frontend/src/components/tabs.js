@@ -7,6 +7,7 @@ import ProductCard from "./productCard";
 import CustomerCard from "./customerCard";
 import OrderCard from "./ordersCard";
 import SupplierCard from "./suppliersCard";
+import ProductButtons from "./customerForms";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -59,6 +60,7 @@ export default function BasicTabs({productsData, customersData, ordersData, supp
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
+                <ProductButtons/>
                 {productsData ? (
                     productsData.products.map((product) => (
                         <ProductCard product={product} />
