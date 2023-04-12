@@ -2,8 +2,7 @@ import React from 'react';
 import {TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
 
 const BASE_URL = 'https://wawmsproject-backend.azurewebsites.net'
-const AddProductForm = ({openAdd, handleClose}) => {
-    console.log("AddProduct " + openAdd)
+const UpdateCustomerForm = ({openUpdate, handleClose}) => {
     const FormTextField = ({autoFocus, id, label, type}) => (
         <TextField
             autoFocus={autoFocus}
@@ -14,21 +13,19 @@ const AddProductForm = ({openAdd, handleClose}) => {
             type={type}
             fullWidth
             variant="standard"
-            inputProps={id === 'id' ? {min: 0, step: 1} : undefined}
         />
     );
 
     const fields = [
-        {id: 'product_id', label: 'ID', type: 'number', autoFocus: true},
+        {id: 'customer_id', label: 'ID', type: 'number', autoFocus: true},
         {id: 'name', label: 'Name', type: 'text'},
-        {id: 'price', label: 'Price', type: 'number'},
-        {id: 'description', label: 'Description', type: 'text'},
-        {id: 'category', label: 'Category', type: 'text'},
-        {id: 'quantity', label: 'Quantity', type: 'number'},
-        {id: 'supplier_id', label: 'Supplier ID', type: 'number'},
-        {id: 'supplier_name', label: 'Supplier Name', type: 'text'},
-        {id: 'supplier_email', label: 'Supplier email', type: 'text'},
-        {id: 'supplier_phone', label: 'Supplier phone', type: 'text'},
+        {id: 'email', label: 'email', type: 'text'},
+        {id: 'phone', label: 'Phone Number', type: 'text'},
+        {id: 'address', label: 'Address', type: 'text'},
+        {id: 'city', label: 'city', type: 'text'},
+        {id: 'province', label: 'Province', type: 'text'},
+        {id: 'postal_code', label: 'Postal Code', type: 'text'},
+        {id: 'country', label: 'Country', type: 'text'},
     ];
 
     const createSubmit = (e) => {
@@ -38,24 +35,23 @@ const AddProductForm = ({openAdd, handleClose}) => {
         const data = Object.fromEntries(formData);
 
 
-        data.product_id = parseInt(data.product_id, 10);
-        data.price = parseInt(data.price, 10);
-        data.quantity = parseInt(data.quantity, 10);
-        data.supplier_id = parseInt(data.supplier_id, 10);
+        data.customer_id = parseInt(data.customer_id, 10);
 
         // Call the API with the data
-        createProduct(data);
+        updateProduct(data);
+        console.log(data)
 
         handleClose();
     };
 
-    const createProduct = async (data) => {
-        const url = `${BASE_URL}/products?product_id=${data.product_id}&name=${data.name}&price=${data.price}&description=${data.description}&category=${data.category}&quantity=${data.quantity}&supplier_id=${data.supplier_id}&supplier_name=${data.supplier_name}&supplier_email=${data.supplier_email}&supplier_phone=${data.supplier_phone}`;
 
-        console.log(url)
+    const updateProduct = async (data) => {
+        console.log("hello")
+        const url = `${BASE_URL}/customers/${data.customer_id}?name=${data.name}&email=${data.email}&phone=${data.phone}&address=${data.address}&city=${data.city}&province=${data.province}&postal_code=${data.postal_code}&country=${data.country}`;
+
         try {
             const response = await fetch(url, {
-                method: 'POST'
+                method: 'PUT'
             });
 
             if (!response.ok) {
@@ -70,8 +66,8 @@ const AddProductForm = ({openAdd, handleClose}) => {
     };
 
     return (
-        <Dialog open={openAdd} onClose={handleClose}>
-            <DialogTitle>Add Product</DialogTitle>
+        <Dialog open={openUpdate} onClose={handleClose}>
+            <DialogTitle>Update Customer</DialogTitle>
             <form onSubmit={createSubmit}>
                 <DialogContent>
                     {fields.map((field, index) => (
@@ -89,7 +85,5 @@ const AddProductForm = ({openAdd, handleClose}) => {
             </form>
         </Dialog>
     );
-
-}
-
-export default AddProductForm;
+};
+export default UpdateCustomerForm

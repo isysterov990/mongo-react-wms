@@ -71,7 +71,7 @@ const UpdateProductForm = ({openUpdate, handleClose}) => {
 
     return (
         <Dialog open={openUpdate} onClose={handleClose}>
-            <DialogTitle>Product Form</DialogTitle>
+            <DialogTitle>Update Product</DialogTitle>
             <form onSubmit={createSubmit}>
                 <DialogContent>
                     {fields.map((field, index) => (
