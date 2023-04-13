@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Button} from '@mui/material';
 import Box from '@mui/material/Box';
-import AddOrderForm from "./AddOrder";
-import UpdateCustomerForm from "./UpdateCustomer";
-import DeleteOrderForm from "./DeleteOrder";
+import AddSupplierForm from "./AddSupplier";
+import UpdateSupplierForm from "./UpdateSupplier";
+import DeleteSupplierForm from "./DeleteSupplier";
 
 
 const OrderButtons = () => {
@@ -31,26 +31,26 @@ const OrderButtons = () => {
                     sx={{backgroundColor: 'green', color: 'white', marginRight: '8px'}}
                     onClick={handleAddOpen}
                 >
-                    ADD ORDER
+                    ADD SUPPLIER
                 </Button>
                 <Button
                     variant="contained"
                     sx={{backgroundColor: 'yellow', color: 'black', marginRight: '8px'}}
                     onClick={handleUpdateOpen}
                 >
-                    UPDATE ORDER
+                    UPDATE SUPPLIER
                 </Button>
                 <Button
                     variant="contained"
                     sx={{backgroundColor: 'red', color: 'white', marginRight: '8px'}}
                     onClick={handleDeleteOpen}
                 >
-                    DELETE ORDER
+                    DELETE SUPPLIER
                 </Button>
             </Box>
-            <AddOrderForm openAdd={openAdd} handleClose={handleClose}/>
-            <UpdateCustomerForm openUpdate={openUpdate} handleClose={handleClose}/>
-            <DeleteOrderForm openDelete={openDelete} handleClose={handleClose}/>
+            <AddSupplierForm openAdd={openAdd} handleClose={handleClose}/>
+            <UpdateSupplierForm openUpdate={openUpdate} handleClose={handleClose}/>
+            <DeleteSupplierForm openDelete={openDelete} handleClose={handleClose}/>
         </div>
     );
 }
